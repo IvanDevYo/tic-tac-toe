@@ -24,25 +24,30 @@ var play = function(column, trow, point) {
 		var i,j;
 		for(i = 0; i < arr.length; i++) {
 			for (j = 0; j < arr.length ; j++) {
-				if ((arr[i][j] === arr[i][j+1]) && (arr[i][j+1] === arr[i][j+2])) {
-					w = arr[i][j];
-					return;
-				} else if ((arr[i][j] === arr[i+1][j]) && (arr[i+1][j] === arr[i+2][j])) {
-					w = arr[i][j];
-					return;
-				} else if ((arr[i][j] === arr[i+1][j+1]) && (arr[i+1][j+1] === arr[i+2][j+2])) {
-					w = arr[i][j];
-					return;
-				} else if ((arr[i][j] === arr[i+1][j-1]) && (arr[i+1][j-1] === arr[i+2][j-2])) {
+				console.log(arr[i][j]);
+				if ((arr[i][0] === arr[i][1]) && (arr[i][1] === arr[i][2])) {
 					w = arr[i][j];
 					return;
 				} 
+				if ((arr[0][j] === arr[1][j]) && (arr[1][j] === arr[2][j])) {
+					w = arr[i][j];
+					return;
+				} 
+				if ((arr[0][0] === arr[1][1]) && (arr[1][1] === arr[2][2])) {
+					w = arr[i][j];
+					return;
+				} 
+				if ((arr[0][2] === arr[1][1]) && (arr[1][1] === arr[2][0])) {
+					w = arr[i][j];
+					return;
+				}
 			}
 		}
 	}
 
 	function drawPaint(column, trow, point) {
 		var thisPoint = row[point];
+		console.log(thisPoint);
 		if (thisPoint.hasAttribute("disabled")) {
 			return;
 		}
@@ -59,6 +64,7 @@ var play = function(column, trow, point) {
 	}
 	(function() {
 		drawPaint(column, trow, point);
+		console.log(arr);
 		game();
 		if (w!== undefined) {
 			endGame(w);
